@@ -1,5 +1,5 @@
-# android
+# Projects created in the online course
+## Android App Entwicklung mit Java: Der umfassende Kurs
 
-Projects created in the online course
 width Udemy Android Online Workshop
 https://www.udemy.com/android-marshmallow-das-umfassende-training/l
