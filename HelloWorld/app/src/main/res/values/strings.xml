@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">HelloWorld</string>
+    <string name="title_activity_demo_button">demoButton</string>
+    <string name="title_activity_fab_demo">fabDemo</string>
+</resources>

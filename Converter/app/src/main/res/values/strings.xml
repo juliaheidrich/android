@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Converter</string>
+    <string name="your_input">Deine Eingabe...</string>
+    <string name="eu_to_sek"><![CDATA[EU -> SEK]]></string>
+    <string name="sek_to_eu"><![CDATA[SEK -> EU]]></string>
+    <string name="cm_to_zoll"><![CDATA[CM -> Zoll]]></string>
+    <string name="zoll_to_cm"><![CDATA[Zoll -> CM]]></string>
+    <string name="invalid_number_input">Bitte geben Sie einen nummerischen Wert zum Berechnen ein.</string>
+    <string name="result">Ergebnis</string>
+    <string name="reset_button">Reset</string>
+</resources>
