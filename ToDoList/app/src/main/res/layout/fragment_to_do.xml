@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ToDoFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:id="@+id/titleLabel"
+        style="?android:listSeparatorTextViewStyle"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/toDoTitle"
+        android:layout_below="@+id/titleLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Aufgabe erledigt?"
+        android:layout_below="@+id/toDoTitle"
+        android:id="@+id/doneLable"
+        style="?android:listSeparatorTextViewStyle"
+        />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/toDoIsDone"
+        android:text="erfolgreich abgeschlossen:"
+        android:layout_below="@+id/doneLable"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:checked="false"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Aufgaben ID"
+        android:layout_below="@+id/toDoIsDone"
+        android:id="@+id/toDoIDLable"
+        style="?android:listSeparatorTextViewStyle"
+        />
+
+    <TextView
+        android:id="@+id/toDoID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_below="@+id/toDoIDLable"
+        style="?android:listSeparatorTextViewStyle"
+        />
+
+</RelativeLayout>

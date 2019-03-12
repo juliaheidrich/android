@@ -1,5 +1,7 @@
 package com.jheidrich.todolist;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -28,10 +30,27 @@ public class MainActivity extends AppCompatActivity {
         // Using Class for List
         //toDoList.setAdapter(new ToDoAdapter(this));
 
+        initViewContent();
+    }
+    // wechsel zwischen den Views
+    /*public static Intent createToDoIntent(Context context, int id) {
+        Intent intent = new Intent(context, ToDoActivity.class);
+        intent.putExtra("com.jheidrich.toDoID", id);
+        return intent;
+    }
+*/
+
+    private void initViewContent() {
         toDoList = (RecyclerView)findViewById(R.id.toDoListRecycler);
         toDoList.setHasFixedSize(true); // performance ++
         toDoList.setLayoutManager(new LinearLayoutManager(this));
         toDoList.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-        toDoList.setAdapter(new ToDoAdapter(this));
+        toDoList.setAdapter(ToDoAdapter.getMySingelton(this));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initViewContent();
     }
 }

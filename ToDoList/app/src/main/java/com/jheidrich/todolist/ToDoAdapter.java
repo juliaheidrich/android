@@ -1,13 +1,13 @@
 package com.jheidrich.todolist;
 
-import android.content.Context;
+import android.app.Activity;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -21,20 +21,23 @@ import java.util.ArrayList;
 // Not needed in recycler public class ToDoAdapter extends BaseAdapter
 public class ToDoAdapter extends RecyclerView.Adapter{
 
+    private static ToDoAdapter mySingleton;
     private ArrayList<ToDoItem> toDoItems;
-    private MainActivity activity;
+    private Activity activity;
+    private CheckBox isDone;
 
-    private static class ToDoViewHolder extends RecyclerView.ViewHolder {
-        public TextView toDoTitle;
-        public CheckBox toDoItemIsDoneCheckBox;
-        public ToDoViewHolder(View view){
-            super(view);
-            toDoTitle = (TextView) view.findViewById(R.id.toDoTitle);
-            toDoItemIsDoneCheckBox = (CheckBox) view.findViewById(R.id.toDoIsDone);
+    public static ToDoAdapter getMySingelton(Activity activity) {
+        if(mySingleton == null){
+            mySingleton = new ToDoAdapter(activity);
         }
+        return mySingleton;
     }
 
-    public ToDoAdapter(MainActivity activity) {
+    public ArrayList<ToDoItem> getToDoItems() {
+        return toDoItems;
+    }
+
+    private ToDoAdapter(Activity activity) {
         this.activity = activity;
 
         toDoItems = new ArrayList<ToDoItem>();
@@ -43,12 +46,58 @@ public class ToDoAdapter extends RecyclerView.Adapter{
         }
     }
 
+    public ToDoItem getToDoItem(int id) {
+        for(ToDoItem toDoItem : toDoItems) {
+            if(toDoItem.getId() == id) {
+                return toDoItem;
+            }
+        }
+        return null;
+    }
+
+    private static class ToDoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+        public ToDoItem currentToDoItem;
+        public TextView toDoTitle;
+        public CheckBox toDoItemIsDoneCheckBox;
+
+        public ToDoViewHolder(View view){
+            super(view);
+            toDoTitle = (TextView) view.findViewById(R.id.toDoTitle);
+            toDoItemIsDoneCheckBox = (CheckBox) view.findViewById(R.id.toDoIsDone);
+            //toDoIDView = (TextView) view.findViewById(R.id.toDoID);
+            toDoItemIsDoneCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    currentToDoItem.setToDoItemDone(isChecked);
+                }
+            });
+
+            view.setOnClickListener(this);
+        }
+
+        public void setCurrentToDoItem(ToDoItem toDoItem) {
+            currentToDoItem = toDoItem;
+            toDoTitle.setText(toDoItem.getTitle());
+            toDoItemIsDoneCheckBox.setChecked(toDoItem.isToDoItemDone());
+        }
+
+        @Override
+        public void onClick(View v) {
+            //Intent intent = MainActivity.createToDoIntent(v.getContext(),currentToDoItem.getId());
+            Intent intent = ToDoPagerActivity.createIntent(v.getContext(), currentToDoItem.getId());
+            v.getContext().startActivity(intent);
+            //Toast toast = Toast.makeText(itemView.getContext(), toDoTitle.getText().toString(), Toast.LENGTH_SHORT);
+            //toast.show();
+        }
+    }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         // preparing layout (width / height)
         View view = this.activity.getLayoutInflater().inflate(R.layout.complex_item, viewGroup, false);
+
         return new ToDoViewHolder(view);
     }
 
@@ -57,8 +106,9 @@ public class ToDoAdapter extends RecyclerView.Adapter{
         // fill data
         ToDoItem toDoItem = toDoItems.get(position);
         ToDoViewHolder toDoHolder = (ToDoViewHolder)viewHolder;
-        toDoHolder.toDoTitle.setText(toDoItem.getTitle());
-        toDoHolder.toDoItemIsDoneCheckBox.setChecked(toDoItem.isToDoItemDone());
+        toDoHolder.setCurrentToDoItem(toDoItem);
+        //toDoHolder.toDoTitle.setText(toDoItem.getTitle());
+        //toDoHolder.toDoItemIsDoneCheckBox.setChecked(toDoItem.isToDoItemDone());
     }
 
     @Override
