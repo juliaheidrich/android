@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="20dp"
+        tools:layout_editor_absoluteX="20dp">
+
+        <TextView
+            android:id="@+id/toDoTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="BLubberBLubb"
+            android:textSize="20dp" />
+
+        <CheckBox
+            android:id="@+id/toDoIsDone"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:button="@null"
+            android:checked="false"
+            android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+            android:gravity="center" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

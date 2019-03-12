@@ -1,23 +1,38 @@
 package com.jheidrich.todolist;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * https://github.com/juliaheidrich
  * (c) by Julia Heidrich
  */
-public class ToDoAdapter extends BaseAdapter {
+
+
+// Not needed in recycler public class ToDoAdapter extends BaseAdapter
+public class ToDoAdapter extends RecyclerView.Adapter{
 
     private ArrayList<ToDoItem> toDoItems;
     private MainActivity activity;
+
+    private static class ToDoViewHolder extends RecyclerView.ViewHolder {
+        public TextView toDoTitle;
+        public CheckBox toDoItemIsDoneCheckBox;
+        public ToDoViewHolder(View view){
+            super(view);
+            toDoTitle = (TextView) view.findViewById(R.id.toDoTitle);
+            toDoItemIsDoneCheckBox = (CheckBox) view.findViewById(R.id.toDoIsDone);
+        }
+    }
 
     public ToDoAdapter(MainActivity activity) {
         this.activity = activity;
@@ -29,6 +44,31 @@ public class ToDoAdapter extends BaseAdapter {
     }
 
 
+    @NonNull
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        // preparing layout (width / height)
+        View view = this.activity.getLayoutInflater().inflate(R.layout.complex_item, viewGroup, false);
+        return new ToDoViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
+        // fill data
+        ToDoItem toDoItem = toDoItems.get(position);
+        ToDoViewHolder toDoHolder = (ToDoViewHolder)viewHolder;
+        toDoHolder.toDoTitle.setText(toDoItem.getTitle());
+        toDoHolder.toDoItemIsDoneCheckBox.setChecked(toDoItem.isToDoItemDone());
+    }
+
+    @Override
+    public int getItemCount() {
+        return toDoItems.size();
+    }
+
+
+    /*
+    not needed in Recycler
     @Override
     public int getCount() {
         return toDoItems.size();
@@ -58,4 +98,6 @@ public class ToDoAdapter extends BaseAdapter {
 
         return row;
     }
+
+    */
 }

@@ -2,18 +2,21 @@ package com.jheidrich.todolist;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ListView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    ListView toDoList;
+    //ListView toDoList;
+    RecyclerView toDoList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        toDoList = (ListView) findViewById(R.id.toDoList);
+        //toDoList = (ListView) findViewById(R.id.toDoList);
 
         // Using Array for List
         // using default List Item (using android.R...)
@@ -23,7 +26,12 @@ public class MainActivity extends AppCompatActivity {
         //toDoList.setAdapter(new ArrayAdapter<String>(this, R.layout.todoitem, toDoItems));
 
         // Using Class for List
+        //toDoList.setAdapter(new ToDoAdapter(this));
 
+        toDoList = (RecyclerView)findViewById(R.id.toDoListRecycler);
+        toDoList.setHasFixedSize(true); // performance ++
+        toDoList.setLayoutManager(new LinearLayoutManager(this));
+        toDoList.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         toDoList.setAdapter(new ToDoAdapter(this));
     }
 }
