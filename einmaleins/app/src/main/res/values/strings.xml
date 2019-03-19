@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">einmaleins</string>
+    <string name="restart">Neu beginnen</string>
+    <string name="settings">Einstellungen</string>
+</resources>
