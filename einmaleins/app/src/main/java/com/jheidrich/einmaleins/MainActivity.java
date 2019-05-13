@@ -126,21 +126,18 @@ public class MainActivity extends AppCompatActivity {
 
         Toast toast;
         if(position == correctResultAt) {
+            answerImage.setImageResource(R.mipmap.ic_correct_answer);
             toast = Toast.makeText(this, "Richtig", Toast.LENGTH_SHORT);
             toast.show();
-            answerImage.setImageResource(R.mipmap.ic_correct_answer);
-            nextChallenge();
+            for(Button answerButton : answers){
+                answerButton.setVisibility(View.INVISIBLE);
+            }
+            resetButton.setVisibility(View.VISIBLE);
         } else {
-            toast = Toast.makeText(this, String.format("Falsch: %s%d", challengeText.getText(), correctResult), Toast.LENGTH_SHORT);
-            toast.show();
             answerImage.setImageResource(R.mipmap.ic_false_answer);
+            toast = Toast.makeText(this,"Rechne lieber noch einmal nach!", Toast.LENGTH_SHORT);
+            toast.show();
         }
-
         answerImage.setVisibility(View.VISIBLE);
-        resetButton.setVisibility(View.VISIBLE);
-
-        for(Button answerButton : answers){
-            answerButton.setVisibility(View.INVISIBLE);
-        }
     }
 }
