@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
     <android.support.v7.widget.GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,7 +17,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="TextView"
             android:textSize="24sp"
             app:layout_gravity="fill"
             app:layout_rowWeight="1" />
@@ -31,42 +29,53 @@
             app:layout_gravity="center"
             app:layout_row="1"
             app:layout_rowWeight="10"
-            tools:srcCompat="@tools:sample/avatars[12]" />
+            android:contentDescription="@string/app_name"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+        <Button
+            android:id="@+id/nextChallenge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:gravity="center"
+            app:layout_gravity="fill"
+            android:onClick="resetChallenge"
+            android:text="@string/nextChallenge"
+            app:layout_column="0"
+            app:layout_rowWeight="1"
+            app:layout_row="2"/>
 
         <Button
             android:id="@+id/answer1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="answerChallenge"
             android:tag="0"
-            android:onClick="answerChallenge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button"
-            app:layout_column="0"
-            app:layout_gravity="fill"
-            app:layout_row="2"
-            app:layout_rowWeight="1" />
-
-        <Button
-            android:id="@+id/answer2"
-            android:tag="1"
-            android:onClick="answerChallenge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button"
             app:layout_column="0"
             app:layout_gravity="fill"
             app:layout_row="3"
             app:layout_rowWeight="1" />
 
         <Button
-            android:id="@+id/answer3"
-            android:tag="2"
-            android:onClick="answerChallenge"
+            android:id="@+id/answer2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"
+            android:onClick="answerChallenge"
+            android:tag="1"
             app:layout_column="0"
             app:layout_gravity="fill"
             app:layout_row="4"
+            app:layout_rowWeight="1" />
+
+        <Button
+            android:id="@+id/answer3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="answerChallenge"
+            android:tag="2"
+            app:layout_column="0"
+            app:layout_gravity="fill"
+            app:layout_row="5"
             app:layout_rowWeight="1" />
     </android.support.v7.widget.GridLayout>
 </android.support.constraint.ConstraintLayout>

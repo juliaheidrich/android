@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="68dp"
         tools:layout_editor_absoluteY="55dp">
@@ -24,54 +24,49 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center">
 
             <Button
                 android:id="@+id/button1"
-                android:text="1"
-                android:tag="1"
                 android:onClick="rowSelected"
-                android:layout_width="50dp"
-                android:layout_height="50dp" />
+                android:tag="1"
+                android:text="1"
+                style="@style/myEinMalEinsButton"/>
 
             <Button
                 android:id="@+id/button2"
                 android:text="2"
                 android:tag="2"
                 android:onClick="rowSelected"
-                android:layout_width="50dp"
-                android:layout_height="50dp" />
+                style="@style/myEinMalEinsButton" />
 
             <Button
                 android:id="@+id/button3"
                 android:text="3"
                 android:tag="3"
                 android:onClick="rowSelected"
-                android:layout_width="50dp"
-                android:layout_height="50dp" />
+                style="@style/myEinMalEinsButton" />
 
             <Button
                 android:id="@+id/button4"
                 android:text="4"
                 android:tag="4"
                 android:onClick="rowSelected"
-                android:layout_width="50dp"
-                android:layout_height="50dp" />
+                style="@style/myEinMalEinsButton" />
 
             <Button
                 android:id="@+id/button5"
                 android:text="5"
                 android:tag="5"
                 android:onClick="rowSelected"
-                android:layout_width="50dp"
-                android:layout_height="50dp" />
+                style="@style/myEinMalEinsButton" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -80,24 +75,21 @@
                 android:text="6"
                 android:tag="6"
                 android:onClick="rowSelected"
-                android:layout_width="50dp"
-                android:layout_height="50dp" />
+                style="@style/myEinMalEinsButton" />
 
             <Button
                 android:id="@+id/button7"
                 android:text="7"
                 android:tag="7"
                 android:onClick="rowSelected"
-                android:layout_width="50dp"
-                android:layout_height="50dp" />
+                style="@style/myEinMalEinsButton" />
 
             <Button
                 android:id="@+id/button8"
                 android:text="8"
                 android:tag="8"
                 android:onClick="rowSelected"
-                android:layout_width="50dp"
-                android:layout_height="50dp" />
+                style="@style/myEinMalEinsButton" />
 
             <Button
                 android:id="@+id/button9"
@@ -105,15 +97,15 @@
                 android:tag="9"
                 android:onClick="rowSelected"
                 android:layout_width="50dp"
-                android:layout_height="50dp" />
+                android:layout_height="50dp"
+                style="@style/myEinMalEinsButton"/>
 
             <Button
                 android:id="@+id/button10"
                 android:text="10"
                 android:tag="10"
                 android:onClick="rowSelected"
-                android:layout_width="50dp"
-                android:layout_height="50dp" />
+                style="@style/myEinMalEinsButton"/>
         </LinearLayout>
 
     </LinearLayout>

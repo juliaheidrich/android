@@ -16,11 +16,12 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
-    //ImageView imageView;
+    ImageView answerImage;
 
     private TextView challengeText;
     private ImageView resultImage;
     private Button[] answers;
+    private Button resetButton;
     private int selectedRow = 0;
     private int correctResult = 0;
     private int correctResultAt = 0;
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         answers[1] = (Button) findViewById(R.id.answer2);
         answers[2] = (Button) findViewById(R.id.answer3);
 
+        resetButton = (Button) findViewById(R.id.nextChallenge) ;
+
         resultImage = (ImageView) findViewById(R.id.resultImage);
         challengeText = (TextView) findViewById(R.id.challengeText);
 
@@ -44,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         setTitle(String.format("Die %der Reihe", selectedRow)); // d = decimal, f= float, s = string
 
         nextChallenge();
+
+        answerImage = (ImageView) findViewById(R.id.resultImage);
         /*
         how to load image in image view
         imageView = (ImageView) findViewById(R.id.imageView2);
@@ -75,14 +80,23 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void resetChallenge(View view) {
+        for(Button answerButton : answers){
+            answerButton.setVisibility(View.VISIBLE);
+        }
+        answerImage.setVisibility(View.INVISIBLE);
+        resetButton.setVisibility(View.INVISIBLE);
+        nextChallenge();
+    }
+
     public void nextChallenge(){
         int operand = (int) (Math.random() * 10) + 1;
         correctResult = selectedRow * operand;
         challengeText.setText(String.format("%d * %d = ", operand, selectedRow));
 
         int ruse[] = new int[2];
-        ruse[0] = generateRuse(correctResult);
-        ruse[1] = generateRuse(correctResult);
+        ruse[0] = generateRuse(correctResult, ruse);
+        ruse[1] = generateRuse(correctResult, ruse);
 
         correctResultAt = (int)( Math.random() * 3);
 
@@ -98,13 +112,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private int generateRuse(int correctResult) {
+    private int generateRuse(int correctResult, int ruse[]) {
         int tmpResult;
         do {
             tmpResult = correctResult + (int) (Math.random() * 4) +1;
-        } while (tmpResult == correctResult);
-
-        // ToDo: verhindern, dass 2x das gleiche ruse result zurück gegeben wird
+        } while (tmpResult == correctResult || tmpResult == ruse[0]);
 
         return tmpResult;
     }
@@ -116,10 +128,19 @@ public class MainActivity extends AppCompatActivity {
         if(position == correctResultAt) {
             toast = Toast.makeText(this, "Richtig", Toast.LENGTH_SHORT);
             toast.show();
+            answerImage.setImageResource(R.mipmap.ic_correct_answer);
             nextChallenge();
         } else {
             toast = Toast.makeText(this, String.format("Falsch: %s%d", challengeText.getText(), correctResult), Toast.LENGTH_SHORT);
             toast.show();
+            answerImage.setImageResource(R.mipmap.ic_false_answer);
+        }
+
+        answerImage.setVisibility(View.VISIBLE);
+        resetButton.setVisibility(View.VISIBLE);
+
+        for(Button answerButton : answers){
+            answerButton.setVisibility(View.INVISIBLE);
         }
     }
 }
